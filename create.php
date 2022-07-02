@@ -99,8 +99,10 @@ buildIndex();
 
 rebuildThemes('boards');
 
-$query = prepare("INSERT INTO ``board_create``(uri) VALUES(:uri)");
+$time_now=time();
+$query = prepare("INSERT INTO ``board_create``(`time`, `uri`) VALUES(:time_now, :uri)");
 $query->bindValue(':uri', $uri);
+$query->bindValue(':time_now', $time_now);
 $query->execute() or error(db_error());
 
 _syslog(LOG_NOTICE, "New board: $uri");

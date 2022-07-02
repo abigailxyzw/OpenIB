@@ -1,0 +1,23 @@
+# MediaWiki with MariaDB
+#
+# Access via "http://localhost:8080"
+#   (or "http://$(docker-machine ip):8080" if using docker-machine)
+version: '3'
+services:
+  web:
+    image: infinity
+    restart: always
+    ports:
+      - 8080:80
+    links:
+      - database
+    volumes:
+      - /home/parallels/OpenIB/php.ini:/usr/local/etc/php/conf.d/php.ini  
+  database:
+    image: mariadb:10.5.9
+    restart: always
+    environment:
+      MYSQL_DATABASE: 8chan 
+      MYSQL_USER: eightchan-user
+      MYSQL_PASSWORD: mysecretpassword
+      MYSQL_RANDOM_ROOT_PASSWORD: 'yes'

@@ -1,0 +1,132 @@
+mysql -u eightchan-user -D 8chan -p  
+
+service mysql start
+mysql -h database -u eightchan-user -D 8chan -p < install.sql
+echo '+ <a href="https://github.com/ctrlcctrlv/infinity">infinity</a> '`git rev-parse HEAD|head -c 10` > .installed
+8chan-captcha
+mysql -h database -u eightchan-user -D 8chan -p < 8chan-captcha/dbschema.sql
+cp ./templates/main.js main.js
+
+
+also, main.js is empty by default. Run tools/rebuild.php to create it every time you update one of the JS files.
+-this doesn't work  copy from templates
+
+https://github.com/vichan-devel/vichan/wiki/config
+https://github.com/vichan-devel/vichan/blob/master/README.md
+inc/instance-config.php — Make all your site-wide changes here. This file is generated upon installation.
+
+
+
+
+index.php was commented out
+PHP Fatal error:  require_once(): Failed opening required 'inc/lib/parsedown/Parsedown.php' (include_path='.:/usr/local/lib/php') in /var/www/html/inc/functions.php on line 25
+
+next . . . something called apcu
+
+
+ Use of undefined constant DISABLED - assumed 'DISABLED' (this will throw an Error in a future version of PHP) in /var/www/html/inc/config.php on line 1603
+Fatal error: Uncaught Error: Undefined class constant 'MYSQL_ATTR_USE_BUFFERED_QUERY' in /var/www/html/inc/database.php:72 Stack trace: #0 /var/www/html/inc/database.php(131): sql_open() #1 /var/www/html/index.php(3): query('SELECT np.* FRO...') #2 {main} thrown in /var/www/html/inc/database.php on line 72 Warning: Cannot modify header information - headers already sent by (output started at /var/www/html/inc/config.php:1475) in /var/www/html/inc/display.php on line 104 
+
+https://stackoverflow.com/questions/39657058/installing-gd-in-docker 
+catpcha install stuff here
+
+more problems
+I think i need to look into undefined constant
+Warning: Use of undefined constant DISABLED - assumed 'DISABLED' (this will throw an Error in a future version of PHP) in /var/www/html/inc/config.php on line 1475
+
+Warning: Use of undefined constant DISABLED - assumed 'DISABLED' (this will throw an Error in a future version of PHP) in /var/www/html/inc/config.php on line 1583
+
+Warning: Use of undefined constant DISABLED - assumed 'DISABLED' (this will throw an Error in a future version of PHP) in /var/www/html/inc/config.php on line 1603
+Warning: Cannot modify header information - headers already sent by (output started at /var/www/html/inc/config.php:1475) in /var/www/html/inc/display.php on line 104
+maybe the error message itself
+
+// For development purposes. Displays (and "dies" on) all errors and warnings. Turn on with the above. line 42 of config.php
+turning it off
+
+
+
+trying to install some other tables
+mysql -h database -u eightchan-user -D 8chan -p < posts.sql
+
+
+mysql -u eightchan-user -D 8chan -p
+
+
+How to suppress warnings (for now)
+https://stackoverflow.com/questions/1987579/remove-warning-messages-in-php
+
+error_reporting(E_ALL ^ E_WARNING); 
+
+here's the capcha cookie
+uri=asdf&title=asdf&subtitle=fg&username=hgsdfds&password=LLTP5CTXlGce&email=asdfds&captcha_text=ubjrms&captcha_cookie=irnlojjrapbnunmbgak
+
+
+captcha_text=ubjrms&captcha_cookie=irnlojjrapbnunmbgak
+
+what is wrong with this?? why can't i debug???  time to eat crackers
+figure out how to debug php applications and how to set the various configuration variables
+practice with easier case. if i am really serious about this.
+break for reddit next
+fsmlysjyaomsufazbetb | abcdefghijklmnopqrstuvwxyz | ecbnal | 1615855498 
+ntacpa
+// Request: curl http://localhost:8080/8chan-captcha/entrypoint.php?mode=check&cookie=hjsmsuyiqnfaqhgmttos&extra=abcdefghijklmnopqrstuvwxyz&text=xfwjys
+
+16158563571
+
+select * from captchas
+
+mysql -u eightchan-user -D 8chan -p
+kyoefuykcsfdmvclppzo | abcdefghijklmnopqrstuvwxyz | fmugge | 1615857896 |
+| hjsmsuyiqnfaqhgmttos | abcdefghijklmnopqrstuvwxyz | xfwjys | 1615858042 |
+| mbxvzcffqosmmbkscqfl | abcdefghijklmnopqrstuvwxyz | duzljq | 1615862845 |
+| sqtabrczncvejgtzwuam | abcdefghijklmnopqrstuvwxyz | daggif | 1615864011 |
+
+curl http://localhost/8chan-captcha/entrypoint.php?mode=check&cookie=detkqaxsgfgjosoireqh&extra=abcdefghijklmnopqrstuvwxyz&text=tptwzo
+
+it is getting all the warnings and interpreting them as not 1!!
+must turn off warnings
+
+
+http://localhost/8chan-captcha/entrypoint.php?mode=check&cookie=detkqaxsgfgjosoireqh&extra=abcdefghijklmnopqrstuvwxyz&text=tptwzo
+
+ini user specific
+
+https://github.com/vichan-devel/vichan/wiki/config
+edit instance config
+
+
+
+INSERT INTO boards_create requires the time. not included.  check github
+
+
+git remote add origin git@192.168.0.213:maggie/infinity.git
+
+
+HrwpQiQtC9ht
+here's my password
+
+
+March 16
+New errors when i sign in!!
+count(): Parameter must be an array or an object that implements Countable /var/www/html/inc/lib/Twig/Environment.php(332) : eval()'d code:412
+$config['twig_cache']=true
+changing this
+
+                                      [memcached] => Array
+                                                        (
+                                                            [0] => Array
+                                                                (
+                                                                    [0] => localhost
+                                                                    [1] => 11211
+                                                                )
+
+                                                        )
+
+                                                    [redis] => Array
+                                                        (
+                                                            [0] => localhost
+                                                            [1] => 6379
+                                                            [2] => 
+                                                            [3] => 1
+                                                        )
+are memcached and redis supposed to be here
